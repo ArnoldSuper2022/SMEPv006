@@ -1,12 +1,12 @@
 package com.example.smepv006.base_data.bd_parametros;
 
-public class BD_PARAMETROS {
+public class BD_OPERACIONES {
     private String TABLE_NAME;
     private String SQL_QUERY;
     private String SQL_CREATE;
     private String SQL_DELETE;
 
-    public BD_PARAMETROS(String TABLE_NAME, String SQL_QUERY, String SQL_CREATE, String SQL_DELETE) {
+    public BD_OPERACIONES(String TABLE_NAME, String SQL_QUERY, String SQL_CREATE, String SQL_DELETE) {
         this.TABLE_NAME = TABLE_NAME;
         this.SQL_QUERY = SQL_QUERY;
         this.SQL_CREATE = SQL_CREATE;

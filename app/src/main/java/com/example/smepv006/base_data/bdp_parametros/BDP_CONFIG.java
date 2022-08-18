@@ -1,15 +1,14 @@
 package com.example.smepv006.base_data.bdp_parametros;
 
-import com.example.smepv006.base_data.bd_parametros.BD_PARAMETROS;
-import com.example.smepv006.base_data.bdp_parametros.tablas.Tabla_Operaciones_BDP;
+import com.example.smepv006.base_data.bd_parametros.BD_OPERACIONES;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BDP_PTAB {
+public class BDP_CONFIG {
 
 
-    public BDP_PTAB() {
+    public BDP_CONFIG() {
     }
 
     public List<String> getListaTablasCrear(){
@@ -38,45 +37,45 @@ public class BDP_PTAB {
         return listaTablas;
     }
 
-    public BD_PARAMETROS establecerParametrosDeTabla(int ID_NAME_TABLE){
-        switch (ID_NAME_TABLE){
+    public BD_OPERACIONES establecerOperaciones(int ID_TABLA){
+        switch (ID_TABLA){
             case 1:
-                return new BD_PARAMETROS(BDP_TAB.SQL_CREATE_TECNICOS,
+                return new BD_OPERACIONES(BDP_TAB.SQL_CREATE_TECNICOS,
                                                             BDP_TAB.SQL_QUERY_TECNICOS,
                                                             BDP_TAB.SQL_CREATE_TECNICOS,
                                                             BDP_TAB.SQL_DELETE_TECNICOS);
             case 2:
-                return new BD_PARAMETROS(BDP_TAB.SQL_CREATE_IDSHEETPROYECT,
+                return new BD_OPERACIONES(BDP_TAB.SQL_CREATE_IDSHEETPROYECT,
                                                             BDP_TAB.SQL_QUERY_IDSHEETPROYECT,
                                                             BDP_TAB.SQL_CREATE_IDSHEETPROYECT,
                                                             BDP_TAB.SQL_DELETE_IDSHEETPROYECT);
             case 3:
-                return new BD_PARAMETROS(BDP_TAB.SQL_CREATE_PROYECT,
+                return new BD_OPERACIONES(BDP_TAB.SQL_CREATE_PROYECT,
                                                             BDP_TAB.SQL_QUERY_PROYECT,
                                                             BDP_TAB.SQL_CREATE_PROYECT,
                                                             BDP_TAB.SQL_DELETE_PROYECT);
             case 4:
-                return new BD_PARAMETROS(BDP_TAB.SQL_CREATE_RESULT,
+                return new BD_OPERACIONES(BDP_TAB.SQL_CREATE_RESULT,
                                                             BDP_TAB.SQL_QUERY_RESULT,
                                                             BDP_TAB.SQL_CREATE_RESULT,
                                                             BDP_TAB.SQL_DELETE_RESULT);
             case 5:
-                return new BD_PARAMETROS(BDP_TAB.SQL_CREATE_INDICADORES,
+                return new BD_OPERACIONES(BDP_TAB.SQL_CREATE_INDICADORES,
                                                             BDP_TAB.SQL_QUERY_INDICADORES,
                                                             BDP_TAB.SQL_CREATE_INDICADORES,
                                                             BDP_TAB.SQL_DELETE_INDICADORES);
             case 6:
-                return new BD_PARAMETROS(BDP_TAB.SQL_CREATE_ACTIVIDADES,
+                return new BD_OPERACIONES(BDP_TAB.SQL_CREATE_ACTIVIDADES,
                                                             BDP_TAB.SQL_QUERY_ACTIVIDADES,
                                                             BDP_TAB.SQL_CREATE_ACTIVIDADES,
                                                             BDP_TAB.SQL_DELETE_ACTIVIDADES);
             case 7:
-                return new BD_PARAMETROS(BDP_TAB.SQL_CREATE_DESCRIPCION,
+                return new BD_OPERACIONES(BDP_TAB.SQL_CREATE_DESCRIPCION,
                                                             BDP_TAB.SQL_QUERY_DESCRIPCION,
                                                             BDP_TAB.SQL_CREATE_DESCRIPCION,
                                                             BDP_TAB.SQL_DELETE_DESCRIPCION);
             default:
-                return new BD_PARAMETROS(BDP_TAB.SQL_CREATE_LOCALIZACION,
+                return new BD_OPERACIONES(BDP_TAB.SQL_CREATE_LOCALIZACION,
                                                             BDP_TAB.SQL_QUERY_LOCALIZACION,
                                                             BDP_TAB.SQL_CREATE_LOCALIZACION,
                                                             BDP_TAB.SQL_DELETE_LOCALIZACION);

@@ -11,7 +11,7 @@ import com.example.smepv006.base_data.bdp_parametros.tablas.Tabla_Tecnicos_BDP;
 
 import java.util.List;
 
-public class BDP_CARGA_OUT {
+public class BDP_CARGA_OUTPUT {
 
     private List<Tabla_Actividades_BDP> DATA_ACTIVIDADES;
     private List<Tabla_DescripAct_BDP> DATA_DESCRIPCION_ACT;
@@ -22,7 +22,7 @@ public class BDP_CARGA_OUT {
     private List<Tabla_Resultados_BDP> DATA_RESULTADOS;
     private List<Tabla_Tecnicos_BDP> DATA_TECNICOS;
 
-    public BDP_CARGA_OUT() {
+    public BDP_CARGA_OUTPUT() {
     }
 
     public List<Tabla_Actividades_BDP> getDATA_ACTIVIDADES() {

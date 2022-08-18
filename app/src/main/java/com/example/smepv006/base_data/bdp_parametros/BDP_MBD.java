@@ -1,48 +1,43 @@
 package com.example.smepv006.base_data.bdp_parametros;
 
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.smepv006.base_data.bd_parametros.BD_INPUT;
-import com.example.smepv006.base_data.bd_parametros.BD_OUTPUT;
-import com.example.smepv006.base_data.bd_parametros.BD_PARAMETROS;
-import com.example.smepv006.base_data.bd_parametros.MBD_manejadordeLaBaseDeDatos;
-import com.example.smepv006.base_data.bdp_parametros.in_out.BDP_CARGA_OUT;
-import com.example.smepv006.base_data.bdp_parametros.in_out.BDP_IN;
-import com.example.smepv006.base_data.bdp_parametros.in_out.BDP_OUT;
-import com.example.smepv006.base_data.bdp_parametros.tablas.Tabla_Actividades_BDP;
-import com.example.smepv006.base_data.bdp_parametros.tablas.Tabla_Operaciones_BDP;
+import com.example.smepv006.base_data.bd_parametros.BD_OPERACIONES;
+import com.example.smepv006.base_data.bd_parametros.MBD_MANEJADOR;
+import com.example.smepv006.base_data.bdp_parametros.in_out.BDP_OUTPUT;
 
-public class BDP_MBD extends MBD_manejadordeLaBaseDeDatos{
+public class BDP_MBD extends MBD_MANEJADOR {
 
-    public BDP_MBD() {
-    }
-    public void CrearTabla(SQLiteDatabase sqLiteDatabase){
-        EXEC_SQL(sqLiteDatabase,new BDP_PTAB().getListaTablasCrear());
-    }
-    public void ActualizarTabla(SQLiteDatabase sqLiteDatabase){
-        EXEC_SQL(sqLiteDatabase,new BDP_PTAB().getListaTablasActualizar());
+    private BD_INPUT bd_input;
+    private BD_OPERACIONES bd_operaciones;
+
+
+    public BDP_MBD(BD_INPUT bd_input, BD_OPERACIONES bd_operaciones) {
+        super(bd_input, bd_operaciones);
+        this.bd_input = bd_input;
+        this.bd_operaciones = bd_operaciones;
     }
 
-    public Boolean isReadebleSQLite(BD_INPUT bd_input){
-        return (bd_input.getID_OPERACION() ==2)||(bd_input.getID_OPERACION()==3);
-    }
 
-    public BD_OUTPUT procesoDeConsulta(BD_INPUT bd_input, SQLiteDatabase sq){
-        BD_PARAMETROS bd_parametros = new BDP_PTAB().establecerParametrosDeTabla(bd_input.getID_TABLA());
+
+    public BDP_OUTPUT procesoDeConsulta(SQLiteDatabase sqLiteDatabase) {
+       BDP_OUTPUT bdp_output = new BDP_OUTPUT();
         switch (bd_input.getID_OPERACION()){
             case 1:
-                return AddData(bd_input,bd_parametros,sq);
-
+                bdp_output.setAddDataInTable(AddData(sqLiteDatabase));
+                break;
             case 2:
-                return ReadData(bd_input,bd_parametros,sq);
-
+                bdp_output.setBdp_carga_output(new BDP_READ().getCarga(bd_input.getID_TABLA(),ReadData(sqLiteDatabase)));
+                break;
             case 3:
-                return IsDataInTable(bd_parametros,sq);
-
+                bdp_output.setDataInTable(DeleteDataInTable(sqLiteDatabase));
             default:
-                return DeleteDataInTable(bd_parametros,sq);
+                bdp_output.setDataInTable(IsDataInTable(sqLiteDatabase));
         }
+        return  bdp_output;
     }
+
+
 
 }

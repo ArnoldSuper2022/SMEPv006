@@ -2,7 +2,7 @@ package com.example.smepv006.base_data.bdp_parametros;
 
 import android.database.Cursor;
 
-import com.example.smepv006.base_data.bdp_parametros.in_out.BDP_CARGA_OUT;
+import com.example.smepv006.base_data.bdp_parametros.in_out.BDP_CARGA_OUTPUT;
 import com.example.smepv006.base_data.bdp_parametros.tablas.Tabla_Actividades_BDP;
 import com.example.smepv006.base_data.bdp_parametros.tablas.Tabla_DescripAct_BDP;
 import com.example.smepv006.base_data.bdp_parametros.tablas.Tabla_IdSheetProyect_BDP;
@@ -15,41 +15,44 @@ import com.example.smepv006.base_data.bdp_parametros.tablas.Tabla_Tecnicos_BDP;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BDP_RTAB {
-    public BDP_RTAB() {
+public class BDP_READ {
+    private Cursor cursor;
+
+    public BDP_READ() {
     }
-    public BDP_CARGA_OUT leerDatosDeTabla(int ID_TABLA, Cursor cursor){
-        BDP_CARGA_OUT bdp_carga_out = new BDP_CARGA_OUT();
+
+    public BDP_CARGA_OUTPUT getCarga(int ID_TABLA, Cursor cursor){
+        this.cursor = cursor;
+       BDP_CARGA_OUTPUT bdp_carga_output = new BDP_CARGA_OUTPUT();
         switch (ID_TABLA){
             case 1:
-                leerDatosTecnicos(cursor,bdp_carga_out);
-                break;
+                 leerDatosTecnicos(bdp_carga_output);
+                 break;
             case 2:
-                leerIdSheetProyect(cursor,bdp_carga_out);
+                leerIdSheetProyect(bdp_carga_output);
                 break;
             case 3:
-                leerProyecto(cursor,bdp_carga_out);
+                leerProyecto(bdp_carga_output);
                 break;
             case 4:
-                leerResult(cursor,bdp_carga_out);
+                leerResult(bdp_carga_output);
                 break;
             case 5:
-                leerIndicadores(cursor,bdp_carga_out);
+                leerIndicadores(bdp_carga_output);
                 break;
             case 6:
-                leerActividades(cursor,bdp_carga_out);
+                leerActividades(bdp_carga_output);
                 break;
             case 7:
-                leerDescripcionACT(cursor,bdp_carga_out);
+                leerDescripcionACT(bdp_carga_output);
                 break;
             default:
-                leerLocalizacion(cursor,bdp_carga_out);
-
+                leerLocalizacion(bdp_carga_output);
         }
-        return bdp_carga_out;
+        return  bdp_carga_output;
     }
 
-    private void leerDatosTecnicos(Cursor cursor, BDP_CARGA_OUT bdp_carga_out){
+    private void leerDatosTecnicos(BDP_CARGA_OUTPUT bdp_carga_output){
         List<Tabla_Tecnicos_BDP> datos = new ArrayList<>();
         if(cursor.moveToFirst()){
             do{
@@ -65,10 +68,10 @@ public class BDP_RTAB {
 
             }while(cursor.moveToNext());
         }
-        bdp_carga_out.setDATA_TECNICOS(datos);
+        bdp_carga_output.setDATA_TECNICOS(datos);
     }
 
-    private void leerIdSheetProyect(Cursor cursor, BDP_CARGA_OUT bdp_carga_out){
+    private void leerIdSheetProyect(BDP_CARGA_OUTPUT bdp_carga_output){
         List<Tabla_IdSheetProyect_BDP> datos = new ArrayList<>();
 
         if(cursor.moveToFirst()){
@@ -77,11 +80,10 @@ public class BDP_RTAB {
                         cursor.getString(1)));
             }while(cursor.moveToNext());
         }
-        bdp_carga_out.setDATA_IDSHEETPROYECT(datos);
-
+        bdp_carga_output.setDATA_IDSHEETPROYECT(datos);
     }
 
-    private void leerProyecto(Cursor cursor, BDP_CARGA_OUT bdp_carga_out){
+    private  void leerProyecto(BDP_CARGA_OUTPUT bdp_carga_output){
         List<Tabla_Proyecto_BDP> datos = new ArrayList<>();
 
         if(cursor.moveToFirst()){
@@ -94,10 +96,10 @@ public class BDP_RTAB {
 
             }while(cursor.moveToNext());
         }
-        bdp_carga_out.setDATA_PROYECTO(datos);
+        bdp_carga_output.setDATA_PROYECTO(datos);
     }
 
-    private void leerResult(Cursor cursor, BDP_CARGA_OUT bdp_carga_out){
+    private void leerResult(BDP_CARGA_OUTPUT bdp_carga_output){
         List<Tabla_Resultados_BDP> datos = new ArrayList<>();
 
         if(cursor.moveToFirst()){
@@ -107,11 +109,10 @@ public class BDP_RTAB {
                         cursor.getString(2)));
             }while(cursor.moveToNext());
         }
-        bdp_carga_out.setDATA_RESULTADOS(datos);
-
+        bdp_carga_output.setDATA_RESULTADOS(datos);
     }
 
-    private void leerIndicadores(Cursor cursor, BDP_CARGA_OUT bdp_carga_out){
+    private void leerIndicadores(BDP_CARGA_OUTPUT bdp_carga_output){
         List<Tabla_Indicadores_BDP> datos = new ArrayList<>();
 
         if(cursor.moveToFirst()){
@@ -126,11 +127,10 @@ public class BDP_RTAB {
                         cursor.getString(7)));
             }while(cursor.moveToNext());
         }
-        bdp_carga_out.setDATA_INDICADORES(datos);
-
+        bdp_carga_output.setDATA_INDICADORES(datos);
     }
 
-    private void leerActividades(Cursor cursor, BDP_CARGA_OUT bdp_carga_out){
+    private void leerActividades(BDP_CARGA_OUTPUT bdp_carga_output){
         List<Tabla_Actividades_BDP> datos = new ArrayList<>();
 
         if(cursor.moveToFirst()){
@@ -145,10 +145,10 @@ public class BDP_RTAB {
                         cursor.getString(7)));
             }while(cursor.moveToNext());
         }
-        bdp_carga_out.setDATA_ACTIVIDADES(datos);
+        bdp_carga_output.setDATA_ACTIVIDADES(datos);
     }
 
-    private void leerDescripcionACT(Cursor cursor, BDP_CARGA_OUT bdp_carga_out){
+    private void leerDescripcionACT(BDP_CARGA_OUTPUT bdp_carga_output){
         List<Tabla_DescripAct_BDP> datos = new ArrayList<>();
 
         if(cursor.moveToFirst()){
@@ -160,10 +160,10 @@ public class BDP_RTAB {
                         cursor.getString(4)));
             }while(cursor.moveToNext());
         }
-        bdp_carga_out.setDATA_DESCRIPCION_ACT(datos);
+        bdp_carga_output.setDATA_DESCRIPCION_ACT(datos);
     }
 
-    private void leerLocalizacion(Cursor cursor, BDP_CARGA_OUT bdp_carga_out){
+    private void leerLocalizacion(BDP_CARGA_OUTPUT bdp_carga_output){
         List<Tabla_Localizacion_BDP> datos = new ArrayList<>();
 
         if(cursor.moveToFirst()){
@@ -175,7 +175,7 @@ public class BDP_RTAB {
                         cursor.getString(4)));
             }while(cursor.moveToNext());
         }
-        bdp_carga_out.setDATA_LOCALIZACION(datos);
+        bdp_carga_output.setDATA_LOCALIZACION(datos);
     }
 
 
